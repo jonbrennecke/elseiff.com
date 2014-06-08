@@ -21,6 +21,6 @@ mongoose.connection.on( "open", function () {
 });
 
 // try authenticating with the username and password given as arguments
-mongoose.connect("mongodb://testuser:pass@" + mongoUrl );
+mongoose.connect("mongodb://" + process.npm_config_user + ":" + process.npm_config_pass + "@" + mongoUrl );
 
 module.exports = mongoose.connection;
