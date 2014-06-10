@@ -5,7 +5,8 @@
 		"cli-color" : "*",
 		"body-parser" : "*",
 		"underscore" : "*",
-		"mongoose" : "*"
+		"mongoose" : "*",
+		"jade" : "*"
 	},
 	"description" : "API server for mbot, the matlab/octave package manager",
 	"repository" : {

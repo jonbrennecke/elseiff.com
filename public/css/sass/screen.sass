@@ -1,0 +1,167 @@
+
+@import "compass/reset"
+@import "colors"
+@import url("http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700")
+
+$header-height: 50px
+$bg-color: lighten($beige,20%)
+$header-color: $dark
+$page-color: lighten( $beige, 30%)
+$sidebar-color: $blue3
+
+
+body
+	background: $bg-color
+
+.header-wrap
+	position: absolute
+	height: $header-height
+	width: 100%
+
+	.header
+		background: $header-color
+
+		.title
+			display: none
+			position: absolute
+			font-family: Ubuntu, sans-serif
+			font-weight: lighter
+			// color: darken( $header-color, 15% )
+			color: $sidebar-color
+			font-size: $header-height / 2
+			top: $header-height / 4
+			left: $header-height / 4
+
+		&.wireframe
+			height: 100%
+			width: 0%
+			box-sizing: border-box
+
+			&.filled
+				width: 100%
+		
+		.header-item
+			position: relative
+			height: 1em
+			width: 5em
+			padding: 0.5em 0
+			margin: 0.5em 0.5em 0 0.5em
+			border-radius: 2px
+			background: darken($header-color,15%)
+			float: right
+			left: 100%
+			display: none
+
+			&.filled
+				left: 0
+
+.page-container
+	position: absolute
+	top: $header-height
+	width: 100%
+	height: calc(100% - #{$header-height})
+
+	$sidebar-width: 15%
+
+	.sidebar-wrap, .page-wrap
+		position: absolute
+		height: 100%
+
+		.sidebar.wireframe, .page.wireframe
+			position: absolute
+			left: 50%
+			top: 50%
+
+			&.filled
+				top: 0
+				left: 0
+				width: 100%
+				height: 100%
+
+	.sidebar-wrap
+		width: $sidebar-width
+
+		.sidebar
+			&.wireframe
+				background: $sidebar-color
+
+			.sidebar-item
+				position: relative
+				float: left
+				height: 1em
+				width: calc(100% - 1em)
+				padding: 0.5em 0
+				margin: 0.5em 0.5em 0 0.5em
+				border-radius: 2px
+				left: -100%
+				display: none
+				background: darken($sidebar-color,15%)
+
+				&.filled
+					left: 0
+
+
+	.page-wrap
+		width: 100% - $sidebar-width
+		left: $sidebar-width
+
+		.page
+			&.wireframe
+				background: $page-color
+
+			.page-item
+				position: relative
+				float: left
+				width: 75%
+				height: 5em
+				padding: 1em 1em
+				box-sizing: border-box
+				margin: 1em 1em 0 1em
+				border-radius: 2px
+				left: 100%
+				display: none
+				border: 1px solid darken($page-color,15%)
+				border-bottom-color: darken($page-color,25%)
+				background: darken($page-color,10%)
+				box-shadow: 0px 1px 1px rgba(#fff,0.5) inset
+
+				&.filled
+					left: 0
+
+				.preload-wrap
+					.text
+						position: relative
+						float: left
+						background: darken($page-color,20%)
+						height: 0.75em
+						margin: 0.25em 100% 0 0
+						
+						@for $i from 0 through 4
+							&:nth-child(#{$i})
+								width: pow(2.71828,$i) * 0.5 + em
+				.loaded-wrap
+					display: none
+					font-family: Ubuntu, sans-serif
+					color: darken($page-color,50%)
+
+					p
+						margin-bottom: 0.25em
+
+					.name
+						font-weight: bold
+					.author
+						display: none
+					.description
+						font-size: 10pt
+
+					.keywords
+						position: absolute
+
+						li						
+							display: inline-block
+							padding: 0.1em 0.25em
+							margin-right: 0.25em
+							font-size: 10pt
+							background: darken($page-color,20%)
+							border-radius: 2px
+

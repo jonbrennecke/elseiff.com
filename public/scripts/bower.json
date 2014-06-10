@@ -1,0 +1,18 @@
+{
+  "name": "mbot-server",
+  "version": "0.0.0",
+  "authors": [
+    "Jon Brennecke <jpbrennecke@gmail.com>"
+  ],
+  "description": "Web server for mbo",
+  "main": "main.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

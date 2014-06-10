@@ -1,0 +1,30 @@
+extends layout
+
+mixin preload
+	div.preload-wrap
+		p.text.preload
+		p.text.preload
+		p.text.preload
+
+block body
+	section.header-wrap
+		div.header.wireframe
+			h1.title mbot
+			div.header-item
+			div.header-item
+			div.header-item
+	section.page-container
+		div.page-wrap
+			div.page.wireframe
+				div.page-item
+					+preload
+				div.page-item
+					+preload
+				div.page-item
+					+preload
+		div.sidebar-wrap
+			div.sidebar.wireframe
+				div.sidebar-item
+				div.sidebar-item
+				div.sidebar-item
+				div.sidebar-item
