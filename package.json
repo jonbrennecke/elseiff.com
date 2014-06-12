@@ -6,7 +6,13 @@
 		"body-parser" : "*",
 		"underscore" : "*",
 		"mongoose" : "*",
-		"jade" : "*"
+		"jade" : "*",
+		"passport" : "*",
+		"passport-local" : "*",
+		"cookie-parser" : "*",
+		"connect-mongo" : "*",
+		"express-session" : "*",
+		"bcrypt" : "*"
 	},
 	"description" : "API server for mbot, the matlab/octave package manager",
 	"repository" : {

@@ -1,0 +1,58 @@
+@import "colors"
+
+.text-wrap
+	font-family: Ubuntu, sans-serif
+	font-weight: lighter
+	color: $header-color
+	padding: 2em
+	display: none
+
+	div:empty
+		display: none
+
+	.info 
+		margin-bottom: 2em
+		.title
+			font-size: 18pt
+
+		.subtitle
+			font-size: 11pt
+			padding-bottom: 1em
+			color: lighten($header-color,25%)
+
+		.description
+			color: lighten($header-color,25%)
+
+		.install-code
+			margin-top: 1em
+			width: 75%
+			box-sizing: border-box
+			background: darken($page-color,10%)
+			padding: 1em
+
+			p
+				font-family: monospace
+				font-weight: lighter
+
+	.table
+		border-radius: 5px
+		background: $pale
+		width: 75%
+		overflow: hidden
+
+		div
+			border-bottom: 1px solid desaturate( darken($pale,25%), 25%)
+			padding: 1em
+
+			.key
+				color: rgba($header-color,0.5)
+				margin-right: 2em
+
+			.value
+				&.array
+					.li
+						padding: 0.25em 0.5em
+						margin-right: 0.25em
+						font-size: 11pt
+						background: rgba($header-color,0.25)
+						border-radius: 2px

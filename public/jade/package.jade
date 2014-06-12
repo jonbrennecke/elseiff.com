@@ -1,0 +1,55 @@
+extends layout
+
+block head
+	title mbot - #{package.name}
+
+block page
+	div.text-wrap
+
+		div.info
+			p.title #{package.name}
+			p.subtitle by #{package.author}
+			p.description #{package.description}
+
+			div.install-code
+				p $ mbot install #{package.name}
+
+		div.table
+			div.version
+				span.key version
+				span.value #{package.version}
+			div.description
+				span.key description
+				span.value #{package.description}
+			div.author
+				span.key author
+				span.value #{package.author}
+			div.contributors
+				span.key contributors
+				span.value #{package.contributors}
+			div.homepage
+				span.key homepage
+				span.value #{package.homepage}
+			div.license
+				span.key license
+				span.value #{package.license}
+			div.repository
+				span.key repository
+				a.value( href="#{package.repository}") #{package.repository}
+			div.keywords
+				span.key keywords
+				span.value.array
+					- if ( package.keywords ) {
+						- for( var i = 0; i < package.keywords.length; i++ ) {
+							span.li #{package.keywords[i]}
+						- }
+					- }
+			div.dependencies
+				span.key dependencies
+				span.value.array 
+					- if ( package.dependencies ) {
+						- for( var i = 0; i < package.dependencies.length; i++ ) {
+							span.li #{package.dependencies[i]}
+						- }
+					- }
+

@@ -4,15 +4,27 @@
  *
  */
 
+var packages = require( __dirname + "/packages" ),
+	users = require( __dirname + "/users" ),
+	gravatar = require( __dirname + "/../gravatar" );
+
 module.exports = {
 
-	use : function ( app ) {
+	use : function ( app, passport ) {
 	
-		app.get('/', function ( req, res ){
-		
-			res.render( "index" );
+		app.get('/', function ( req, res ) {
+			
+			var data = {
+				user : req.user ? gravatar.generate( req.user ) : gravatar.anon()
+			}
+
+			res.render( "index", data );
 
 		});
+
+		packages.use( app, passport );
+
+		users.use( app, passport );
 
 	}
 

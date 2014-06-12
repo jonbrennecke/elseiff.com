@@ -1,8 +1,23 @@
-doctype html
-html(lang="en")
-	head
-		link( rel="stylesheet" type="text/css" href="../css/stylesheets/screen.css" )
-		script( data-main="../scripts/main.js" src="../scripts/bower_components/requirejs/require.js" )
-		block head
-	body
-		block body
+extends layout-components
+	
+block page-container
+	div.page-wrap
+		div.page.wireframe
+			block page
+
+	div.sidebar-wrap
+		div.sidebar.wireframe
+			a.sidebar-item( href="/" ) 
+				span.fa.fa-home
+					span.text home
+			a.sidebar-item( href="/packages" ) 
+				span.fa.fa-square 
+					span.text packages
+			a.sidebar-item
+				span.fa.fa-heart 
+					span.text favorites
+			a.sidebar-item
+				span.fa.fa-tasks 
+					span.text categories
+			block sidebar
+

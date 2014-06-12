@@ -1,12 +1,12 @@
 # Require any additional compass plugins here.
-module Sass::Script::Functions
-  module CustomSassExtensions
-    def random
-      rand(1.0)
-    end
-  end
-  include Random
-end
+# module Sass::Script::Functions
+#   module CustomSassExtensions
+#     def random
+#       rand(1.0)
+#     end
+#   end
+#   include Random
+# end
 
 
 # Set this to the root of your project when deployed:

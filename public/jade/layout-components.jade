@@ -1,0 +1,27 @@
+- var host = "localhost:8081";
+
+doctype html
+html(lang="en")
+	head
+		link( rel="stylesheet" type="text/css" href="../css/stylesheets/main.css" )
+		script( data-main="../scripts/main.js" src="../scripts/bower_components/requirejs/require.js" )
+		block head
+	body
+		block body
+
+		section.header-wrap
+			div.header.wireframe
+				a.title( href="/") iff
+				- if ( user && user.name )
+					a.header-item( href="/signout" ) signout
+					a.header-item #{user.name}
+				- else
+					a.header-item( href="/signin" ) signin
+				div.header-item.search-wrap
+					div.search
+						input( name="search" type="text" placeholder="search" )
+						a.fa.fa-search
+				block header
+
+		section.page-container
+			block page-container

@@ -1,0 +1,78 @@
+@import "basis"
+
+body
+	background: $header-color
+
+.header
+	background: darken($header-color,10%) !important
+
+.auth-form
+	top: 10%
+	position: relative
+	width: 20em
+	margin: 0 auto
+	padding: 2em
+	font-family: Ubuntu, sans-serif
+	font-size: 12pt
+
+	.welcome
+		font-size: 18pt
+		color: $page-color
+		text-shadow: 0px 0px 3px rgba(#000,0.5)
+		margin-bottom: 1em
+
+	.field, input[type="submit"]
+		$input-height: 3em
+		margin-bottom: 1em
+		width: 100%
+		box-shadow: 0px 1px 1px rgba(#000,0.25), 0px 1px 1px 0px rgba(#fff,0.25) inset
+		border-radius: 3px
+
+		&[type="submit"]
+			font-size: 12pt
+			border: none
+			padding: $input-height / 3
+			margin-top: 1em
+			background: $sidebar-color
+			color: $page-color
+			outline: none
+
+			&:active
+				background: desaturate( darken($sidebar-color,20%), 15%)
+
+		span.icon
+			position: relative
+			float: left
+			display: block
+			height: $input-height
+			width: $input-height
+			color: darken($header-color,25%)
+			background: darken($header-color,15%)
+			border-top-left-radius: 3px
+			border-bottom-left-radius: 3px
+			text-align: center
+			padding: ($input-height - 1em) / 2
+			box-sizing: border-box
+
+		input
+			position: relative
+			margin: 0
+			box-sizing: border-box
+			border-top-right-radius: 3px
+			border-bottom-right-radius: 3px
+			width: calc(100% - #{$input-height})
+			height: $input-height
+			font-size: 12pt
+			padding: $input-height / 4
+			background: $page-color
+			border: none
+			outline: none
+
+	.prompt
+		font-size: 10pt
+		color: lighten($header-color,25%)
+
+		a
+			color: inherit
+
+

@@ -18,6 +18,10 @@ requirejs.config({
 		"jquery-ui" : {
 			exports : '$',
 			deps : [ 'jquery' ]
+		},
+
+		"package-uifunctions" : {
+			deps : [ 'jquery-ui' ]
 		}
 	}
 
@@ -39,18 +43,22 @@ require([ "jquery-ui"], function ( $ ) {
 	// loading animation
 	$( document ).ready( function () {
 
-		$(".wireframe")
+		$(".header").addClass("filled",500,"easeOutQuint")
+
+		$(".wireframe:not(.header)")
 			.addClass("filled", 500, "easeOutBack" )
 			.promise()
 			.done( function () {
 
-				$(".title").fadeIn()
+				require([ 'package-uifunctions' ])
+
+				$(".title").fadeIn(200)
 
 				$( ".sidebar-item" ).show().each( function ( i ) {
 					$(this).delay( 50 * i ).addClass( "filled", 700, "easeOutQuint" )
 				})
 				
-				$( ".header-item" ).delay(400).show().each( function ( i ) {
+				$( ".header-item" ).show().each( function ( i ) {
 					$(this).delay( 50 * i).addClass( "filled", 700, "easeOutBack" )
 				})
 
@@ -83,16 +91,20 @@ require([ "jquery-ui"], function ( $ ) {
 
 										pre.parent()
 											.append("<div class='loaded-wrap'>" + 
-													"<p class='name'>" + pkgs.message[i].name + "</p>" +
+													"<a class='name' href='http://localhost:8081/packages/" + pkgs.message[i].name + "'>" + pkgs.message[i].name + "</a>" +
 													"<p class='author'>" + pkgs.message[i].author + "</p>" +
 													"<p class='description'>" + pkgs.message[i].description + "</p>" +
 													keywords + "</ul></div>" )
+
+
+
 									}
 									else {
 
 										// there may be fewer packages than preloads
 										// in which case, fadeOut the remaining preloads
 										pre.parent().delay(100).fadeOut(500)
+										
 									}
 
 									pre.promise().done( function () {

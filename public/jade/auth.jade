@@ -1,0 +1,41 @@
+extends auth-layout
+
+block head
+	link( rel="stylesheet" type="text/css" href="../css/stylesheets/auth.css" )
+	title roo - sign up
+
+
+block auth-form
+	h1.welcome Welcome
+
+	- if ( login ) {
+		div.username.field
+			span.icon.fa.fa-user
+			input( type="text" name="username" placeholder="Username/Email" ) 
+		div.password.field
+			span.icon.fa.fa-lock
+			input( type="password" name="password" placeholder="Password" )
+
+		div.prompt <a href="/signup">Sign up</a> or <a href="/reset">reset your password </a>
+
+		input( type="submit" value="Sign In" ) 
+
+	- } else {
+
+		div.username.field
+			span.icon.fa.fa-user
+			input( type="text" name="username" placeholder="Pick a username" )
+		div.email.field
+			span.icon.fa.fa-envelope
+			input( type="text" name="email" placeholder="Enter your email" ) 	
+		div.password.field
+			span.icon.fa.fa-lock
+			input( type="password" name="password" placeholder="Create a password" )
+		div.passwordConfirm.field
+			span.icon.fa.fa-lock
+			input( type="password" name="passwordConfirm" placeholder="Confirm your password" )
+
+		div.prompt <a href="/login">Log in</a> or <a href="/reset">reset your password </a>
+
+		input( type="submit" value="Sign Up for Free" ) 
+	- }

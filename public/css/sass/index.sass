@@ -1,0 +1,38 @@
+@import "basis"
+
+.doc-section
+	margin-bottom: 3em
+
+.headline
+	margin-bottom: 2em
+	display: block
+
+	span.text 
+		font-family: Ubuntu, sans-serif
+		font-size: 18pt
+		display: block
+		padding-top: 0.5em
+
+	&.fa::before
+		display: block
+		float: left
+		position: relative
+		height: 2em
+		width: 2em
+		text-align: center
+		box-sizing: border-box
+		padding: 0.5em
+		background: darken($pale,25%)
+		color: #fff
+		font-size: 18pt
+		border-radius: 50%
+		margin-right: 1em
+
+.cmdlet
+	white-space: pre
+	padding: 2em
+	margin: 1em 0
+	font-family: monospace
+	background: desaturate(lighten($pale,7%),50%)
+	box-shadow: 0px 1px 1px rgba(#000,0.15)
+	border-radius: 3px
