@@ -1,4 +1,4 @@
-mbot-server
+iff-website
 ===========
 
-API server for mbot, the matlab/octave package manager
+API server and webpage hub for Iff, the matlab/octave package manager.
