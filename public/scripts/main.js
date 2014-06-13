@@ -33,7 +33,7 @@ require([ "jquery-ui", "packagelist" ], function ( $ ) {
 	// so that once the animations have finished, the query is completed
 	var query = $.ajax({
 		method : "POST",
-		url : "http://localhost:8081/api/find"
+		url : "http://elseiff.com/api/find"
 	});
 	
 
@@ -54,7 +54,7 @@ require([ "jquery-ui", "packagelist" ], function ( $ ) {
 								
 								var favQuery = $.ajax({
 									method : "get",
-									url : "http://localhost:8081/api/user/favorites"
+									url : "http://elseiff.com/api/user/favorites"
 								});
 
 
