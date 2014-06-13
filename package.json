@@ -1,5 +1,5 @@
 {
-	"name" : "mbot-server",
+	"name" : "iff-server",
 	"dependencies" : {
 		"express" : "*",
 		"cli-color" : "*",

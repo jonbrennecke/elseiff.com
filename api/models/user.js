@@ -16,6 +16,7 @@ var UserSchema = new Schema({
 	name : { type : String, required : true },
 	passwordHash : { type : String, required : true },
 	email : { type : String, required : true },
+	favorites : Array
 
 });
 
@@ -50,6 +51,13 @@ UserSchema.path('passwordHash').validate( function ( v ) {
 // check the password against the hash using bcrypt's 'compareSync'
 UserSchema.methods.checkPassword = function ( password ) {
 	return bcrypt.compareSync( password, this.passwordHash );
+}
+
+// remove the passwordHash from the returned JSON passed to the end user
+UserSchema.methods.toJSON = function () {
+	var obj = this.toObject()
+	delete obj.passwordHash
+	return obj
 }
 
 

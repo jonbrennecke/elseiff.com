@@ -2583,9 +2583,19 @@ body {
 /* line 6, ../sass/auth.sass */
 .header {
   background: #51494b !important;
+  width: 100% !important;
+}
+/* line 10, ../sass/auth.sass */
+.header .header-item {
+  left: 0 !important;
+  display: block !important;
+}
+/* line 14, ../sass/auth.sass */
+.header .title {
+  display: block !important;
 }
 
-/* line 9, ../sass/auth.sass */
+/* line 17, ../sass/auth.sass */
 .auth-form {
   top: 10%;
   position: relative;
@@ -2595,21 +2605,21 @@ body {
   font-family: Ubuntu, sans-serif;
   font-size: 12pt;
 }
-/* line 18, ../sass/auth.sass */
+/* line 26, ../sass/auth.sass */
 .auth-form .welcome {
   font-size: 18pt;
   color: white;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
   margin-bottom: 1em;
 }
-/* line 24, ../sass/auth.sass */
+/* line 32, ../sass/auth.sass */
 .auth-form .field, .auth-form input[type="submit"] {
   margin-bottom: 1em;
   width: 100%;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25), 0px 1px 1px 0px rgba(255, 255, 255, 0.25) inset;
   border-radius: 3px;
 }
-/* line 31, ../sass/auth.sass */
+/* line 39, ../sass/auth.sass */
 .auth-form .field[type="submit"], .auth-form input[type="submit"][type="submit"] {
   font-size: 12pt;
   border: none;
@@ -2619,11 +2629,11 @@ body {
   color: white;
   outline: none;
 }
-/* line 40, ../sass/auth.sass */
+/* line 48, ../sass/auth.sass */
 .auth-form .field[type="submit"]:active, .auth-form input[type="submit"][type="submit"]:active {
   background: #4b91a3;
 }
-/* line 43, ../sass/auth.sass */
+/* line 51, ../sass/auth.sass */
 .auth-form .field span.icon, .auth-form input[type="submit"] span.icon {
   position: relative;
   float: left;
@@ -2638,7 +2648,7 @@ body {
   padding: 1em;
   box-sizing: border-box;
 }
-/* line 57, ../sass/auth.sass */
+/* line 65, ../sass/auth.sass */
 .auth-form .field input, .auth-form input[type="submit"] input {
   position: relative;
   margin: 0;
@@ -2653,12 +2663,12 @@ body {
   border: none;
   outline: none;
 }
-/* line 71, ../sass/auth.sass */
+/* line 79, ../sass/auth.sass */
 .auth-form .prompt {
   font-size: 10pt;
   color: #aba1a4;
 }
-/* line 75, ../sass/auth.sass */
+/* line 83, ../sass/auth.sass */
 .auth-form .prompt a {
   color: inherit;
 }

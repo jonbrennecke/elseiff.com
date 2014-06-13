@@ -1,10 +1,57 @@
-var Package = require( __dirname + "/models/package" ),
+var User = require( __dirname + "/models/user" ),
+	Package = require( __dirname + "/models/package" ),
 	log = require( __dirname + "/logging" );
 
 
 module.exports = {
 	
 	use : function ( app, router ) {
+
+		router.route( '/user' )
+
+			/**
+			 *
+			 * GET to /user returns a JSON object containing the User Schema
+			 *
+			 */
+
+			.get( function ( req, res ) {
+				if ( req.user ) {
+					User.findById( req.user._id, function ( err, user ) {
+						if ( err )
+							res.send( log.get( "serverError", err ) )
+						else
+							res.send( log.get( "ok", user ) )
+					})
+				}
+				else
+					res.send( log.get( "notFound", req.body ) )
+			})
+
+
+		router.route( '/user/favorites' )
+
+			/**
+			 *
+			 * POST to /user/favorites updates the user's favorites with the package
+			 *
+			 */
+			 
+			.post( function ( req, res ) {
+
+				if ( req.user && req.body.pkg ) {
+					User.findByIdAndUpdate( req.user._id, { $addToSet : { favorites : req.body.pkg } }, function ( err, user ) {
+						if ( err )
+							res.send( log.get( "serverError", err ) )
+						else
+							res.send( log.get( "ok", user ) )
+					})
+				}
+				else
+					res.send( log.get( "notFound", req.body ) )
+
+			})
+
 
 		router.route( '/find' )
 
@@ -19,12 +66,10 @@ module.exports = {
 				// req.body
 				Package.find( req.body, function ( err, pkgs ) {
 
-					if ( err ) {
-						res.send( log.get( "serverError", "The server encountered an error while reading from the database." ) );
-					}
-					else {
+					if ( err )
+						res.send( log.get( "serverError", err ) );
+					else
 						res.send( log.get( "ok", pkgs ) );
-					}
 
 				});	
 
@@ -46,10 +91,10 @@ module.exports = {
 				Package.findOne({ name : req.body.pkg }, function ( err, pkg ) {
 
 					// if a package is found, return it's repository info
-					if ( pkg )
-						res.send( log.get( "ok", pkg.repository ) );
+					if ( err )
+						res.send( log.get( "notFound", err ) );
 					else
-						res.send( log.get( "notFound", "The server couldn't find a package matching \"" + req.body.pkg + "\" in the database." ) );
+						res.send( log.get( "ok", pkg.repository ) );
 
 				});
 
@@ -82,9 +127,9 @@ module.exports = {
 								pkg.update( req.body.data, function ( err ) {
 									
 									if ( err )
-										res.send( log.get( "serverError", "Database error encountered while saving the file." ) );
+										res.send( log.get( "serverError", err ) );
 									else
-										res.send( log.get( "ok", "The package has been updated on the server." ) );
+										res.send( log.get( "ok", pkg ) );
 								});
 
 							}
