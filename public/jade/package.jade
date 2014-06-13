@@ -1,7 +1,7 @@
 extends layout
 
 block head
-	title mbot - #{package.name}
+	title iff - #{package.name}
 
 block page
 	div.text-wrap
@@ -12,7 +12,7 @@ block page
 			p.description #{package.description}
 
 			div.install-code
-				p $ mbot install #{package.name}
+				p $ iff install #{package.name}
 
 		div.table
 			div.version

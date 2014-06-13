@@ -1,8 +1,3 @@
-/**
- *
- * Currates all the pages
- *
- */
 
 var Package = require( __dirname + "/../api/models/package" ),
 	gravatar = require( __dirname + "/../gravatar" );

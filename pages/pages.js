@@ -6,6 +6,7 @@
 
 var packages = require( __dirname + "/packages" ),
 	users = require( __dirname + "/users" ),
+	// favorites = require( __dirname + "/favorites" ),
 	gravatar = require( __dirname + "/../gravatar" );
 
 module.exports = {
@@ -25,6 +26,8 @@ module.exports = {
 		packages.use( app, passport );
 
 		users.use( app, passport );
+
+		// favorites.use( app, passport );
 
 	}
 

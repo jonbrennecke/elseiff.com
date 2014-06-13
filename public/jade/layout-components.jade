@@ -11,7 +11,7 @@ html(lang="en")
 
 		section.header-wrap
 			div.header.wireframe
-				a.title( href="/") iff
+				a.title( href="/") elseiff.com
 				- if ( user && user.name )
 					a.header-item( href="/signout" ) signout
 					a.header-item #{user.name}

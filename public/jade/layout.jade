@@ -7,16 +7,17 @@ block page-container
 
 	div.sidebar-wrap
 		div.sidebar.wireframe
-			a.sidebar-item( href="/" ) 
+			a.sidebar-item#sb-home( href="/" ) 
 				span.fa.fa-home
 					span.text home
-			a.sidebar-item( href="/packages" ) 
+			a.sidebar-item#sb-packages( href="/packages" ) 
 				span.fa.fa-square 
 					span.text packages
-			a.sidebar-item
-				span.fa.fa-heart 
-					span.text favorites
-			a.sidebar-item
+			- var favorites = user.name ? "favorites" : "login"
+				a.sidebar-item#sb-favorites( data-action="favorites" )
+					span.fa.fa-heart 
+						span.text favorites
+			a.sidebar-item#sb-categories
 				span.fa.fa-tasks 
 					span.text categories
 			block sidebar

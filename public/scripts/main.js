@@ -18,14 +18,14 @@ requirejs.config({
 			deps : [ 'jquery' ]
 		},
 
-		"uiux" : {
+		uiux : {
 			deps : [ 'jquery-ui' ]
 		}
 	}
 
 });
 
-require([ "jquery-ui"], function ( $ ) {
+require([ "jquery-ui", "packagelist" ], function ( $ ) {
 
 	// AJAX post request to retieve all packages
 	// ---
@@ -37,7 +37,6 @@ require([ "jquery-ui"], function ( $ ) {
 	});
 	
 
-
 	// loading animation
 	$( document ).ready( function () {
 
@@ -46,9 +45,32 @@ require([ "jquery-ui"], function ( $ ) {
 			.promise()
 			.done( function () {
 
-				require([ 'uiux', 'package-anims' ], function ( promise, fun ) {
+				require([ 'uiux', 'packagelist' ], function ( promises, PackageList ) {
 						
-					promise.done( fun.bind( this, query ) );
+					// sidebar favorites button is clicked	
+					promises.sidebarItems.done( function () {
+						$("#sb-favorites").click( function () {
+							if ( this.dataset.action == "favorites" ) {
+								
+								var favQuery = $.ajax({
+									method : "get",
+									url : "http://localhost:8081/api/user/favorites"
+								});
+
+
+								$(".page").fadeOut().promise().done( function () {
+
+									$(this).empty().show()
+
+									// create a PackageList with the query for the user's favorites
+									new PackageList( favQuery )
+								})
+							}
+						});
+					});
+
+					// create a PackageList with the query for ALL the packages
+					new PackageList( query )
 
 				});
 			});

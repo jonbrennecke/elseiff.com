@@ -52,6 +52,35 @@ module.exports = {
 
 			})
 
+			/**
+			 *
+			 * GET from /user/favorites returns the user's favorites
+			 *
+			 */
+
+			.get( function ( req, res ) {
+				if ( req.user ) {
+					User.findById( req.user._id, function ( err, user ) {
+						if ( err )
+							res.send( log.get( "serverError", err ) );
+						else {
+
+							// find all the packages listed in user.favorites
+							Package.find({ name : { $in : user.favorites } }, function ( err, list ) {
+								
+								if ( err )
+									res.send( log.get( "notFound", err ) );
+								else 
+									res.send( log.get( "ok", { packages : list } ) );
+
+							})
+						}
+					})
+				}
+				else
+					res.send( log.get( "notFound", req.body ) );
+			})
+
 
 		router.route( '/find' )
 
@@ -69,7 +98,7 @@ module.exports = {
 					if ( err )
 						res.send( log.get( "serverError", err ) );
 					else
-						res.send( log.get( "ok", pkgs ) );
+						res.send( log.get( "ok", { packages : pkgs } ) );
 
 				});	
 
