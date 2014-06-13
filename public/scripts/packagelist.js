@@ -62,7 +62,7 @@
 
 							// there are more packages than preloads, so
 							// make another .page-item
-							$("<div class='page-item filled'></div>").appendTo(".page").fadeIn()
+							// $("<div class='page-item filled'></div>").appendTo(".page").fadeIn()
 
 						}
 					}
