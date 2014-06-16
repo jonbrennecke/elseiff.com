@@ -59,6 +59,8 @@ module.exports = {
 			 */
 
 			.get( function ( req, res ) {
+
+				// console.log(re)
 				if ( req.user ) {
 					User.findById( req.user._id, function ( err, user ) {
 						if ( err )
@@ -90,7 +92,7 @@ module.exports = {
 			 * GET to /find returns a JSON object containing all packages matching a criteria
 			 *
 			 */
-			.post( function ( req, res ) {
+			.get( function ( req, res ) {
 
 				// req.body
 				Package.find( req.body, function ( err, pkgs ) {
@@ -101,34 +103,7 @@ module.exports = {
 						res.send( log.get( "ok", { packages : pkgs } ) );
 
 				});	
-
-
 			});
-
-			
-
-		// INSTALL
-		router.route( '/install' )
-
-			/**
-			 *
-			 * GET to /install returns a JSON object containing information about the packages repository
-			 *
-			 */
-			.get( function ( req, res ) {
-				
-				Package.findOne({ name : req.body.pkg }, function ( err, pkg ) {
-
-					// if a package is found, return it's repository info
-					if ( err )
-						res.send( log.get( "notFound", err ) );
-					else
-						res.send( log.get( "ok", pkg.repository ) );
-
-				});
-
-
-			})
 
 
 		// PUBLISH

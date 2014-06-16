@@ -1,3 +1,5 @@
+var host = "elseiff.com";
+
 requirejs.config({
 
 	paths : {
@@ -27,14 +29,41 @@ requirejs.config({
 
 require([ "jquery-ui", "packagelist" ], function ( $ ) {
 
-	// AJAX post request to retieve all packages
-	// ---
-	// the AJAX query for packages and the loading animations happen simultaneously,
-	// so that once the animations have finished, the query is completed
+	/**
+	 * AJAX post request to retieve all packages
+	 * ---
+	 * the AJAX query for packages and the loading animations happen simultaneously,
+	 * so that once the animations have finished, the query is completed
+	 */
 	var query = $.ajax({
-		method : "POST",
-		url : "http://elseiff.com/api/find"
+		method : "GET",
+		url : "http://" + host + "/api/find"
 	});
+
+
+	/**
+	 * 
+	 *	function to link to the heart on package items
+	 *
+	 */
+	window.heart = function () {
+		var pkg = $(this).attr('data-package');
+
+		$(this).toggleClass('fav', 80 )
+
+		$.ajax({
+			
+			method : "POST",
+			url : "http://" + host + "/api/user/favorites",
+			data : { pkg : pkg },
+			success : function ( data ) {
+				console.log( data )
+			},
+			failure : function ( err ) {
+				console.log( err )
+			}
+		});
+	};
 	
 
 	// loading animation
@@ -54,7 +83,7 @@ require([ "jquery-ui", "packagelist" ], function ( $ ) {
 								
 								var favQuery = $.ajax({
 									method : "get",
-									url : "http://elseiff.com/api/user/favorites"
+									url : "http://" + host + "/api/user/favorites"
 								});
 
 
@@ -62,15 +91,27 @@ require([ "jquery-ui", "packagelist" ], function ( $ ) {
 
 									$(this).empty().show()
 
+									var deferred = $.Deferred();
+
+									$(".page-item").promise().done( function () {
+										deferred.resolve();
+									});
+
 									// create a PackageList with the query for the user's favorites
-									new PackageList( favQuery )
+									new PackageList( favQuery, deferred )
 								})
 							}
 						});
 					});
 
+					var deferred = $.Deferred();
+
+					$(".page-item").promise().done( function () {
+						deferred.resolve();
+					});
+
 					// create a PackageList with the query for ALL the packages
-					new PackageList( query )
+					new PackageList( query, deferred )
 
 				});
 			});
