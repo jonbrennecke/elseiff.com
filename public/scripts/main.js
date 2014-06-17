@@ -1,15 +1,11 @@
-var host = "elseiff.com";
+var host = "localhost:8081";
+
 
 requirejs.config({
-
 	paths : {
-
 		jquery : "bower_components/jquery/dist/jquery.min",
-
 		"jquery-ui" : "bower_components/jquery-ui/ui/minified/jquery-ui.min"
-
 	},
-
 	shim : {
 		jquery : {
 			exports : "$"
@@ -22,12 +18,17 @@ requirejs.config({
 
 		uiux : {
 			deps : [ 'jquery-ui' ]
+		},
+
+		wireframe : {
+			deps : [ 'jquery-ui' ]
 		}
 	}
-
 });
 
-require([ "jquery-ui", "packagelist" ], function ( $ ) {
+
+require([ "jquery-ui", "wireframe" ], function ( $, wfd ) {
+
 
 	/**
 	 * AJAX post request to retieve all packages
@@ -40,80 +41,54 @@ require([ "jquery-ui", "packagelist" ], function ( $ ) {
 		url : "http://" + host + "/api/find"
 	});
 
+	var url = document.URL.split( host ).slice( 1 )[0];
 
-	/**
-	 * 
-	 *	function to link to the heart on package items
-	 *
-	 */
-	window.heart = function () {
-		var pkg = $(this).attr('data-package');
-
-		$(this).toggleClass('fav', 80 )
-
-		$.ajax({
-			
-			method : "POST",
-			url : "http://" + host + "/api/user/favorites",
-			data : { pkg : pkg },
-			success : function ( data ) {
-				console.log( data )
-			},
-			failure : function ( err ) {
-				console.log( err )
-			}
-		});
-	};
 	
+	$.when( wfd ).done( function () {
 
-	// loading animation
-	$( document ).ready( function () {
+		require([ 'uiux', 'packagelist' ], function ( promises, PackageList ) {
 
-		$(".wireframe")
-			.addClass("filled", 500, "easeOutBack" )
-			.promise()
-			.done( function () {
+			// TODO this seems kinda hacky, fix this in the future
+			if ( /packages$/.test(url) ) {
+				
+				// sidebar favorites button is clicked	
+				promises.sidebarItems.done( function () {
+					$("#sb-favorites").click( function () {
+						if ( this.dataset.action == "favorites" ) {
+							
+							var favQuery = $.ajax({
+								method : "get",
+								url : "http://" + host + "/api/user/favorites"
+							});
 
-				require([ 'uiux', 'packagelist' ], function ( promises, PackageList ) {
-						
-					// sidebar favorites button is clicked	
-					promises.sidebarItems.done( function () {
-						$("#sb-favorites").click( function () {
-							if ( this.dataset.action == "favorites" ) {
-								
-								var favQuery = $.ajax({
-									method : "get",
-									url : "http://" + host + "/api/user/favorites"
+
+							$(".page").fadeOut().promise().done( function () {
+
+								$(this).empty().show()
+
+								var d = $.Deferred();
+
+								$(".page-item").promise().done( function () {
+									d.resolve();
 								});
 
-
-								$(".page").fadeOut().promise().done( function () {
-
-									$(this).empty().show()
-
-									var deferred = $.Deferred();
-
-									$(".page-item").promise().done( function () {
-										deferred.resolve();
-									});
-
-									// create a PackageList with the query for the user's favorites
-									new PackageList( favQuery, deferred )
-								})
-							}
-						});
+								// create a PackageList with the query for the user's favorites
+								new PackageList( favQuery, d )
+							})
+						}
 					});
-
-					var deferred = $.Deferred();
-
-					$(".page-item").promise().done( function () {
-						deferred.resolve();
-					});
-
-					// create a PackageList with the query for ALL the packages
-					new PackageList( query, deferred )
-
 				});
-			});
+
+				var d = $.Deferred();
+
+				$(".page-item").promise().done( function () {
+					d.resolve();
+				});
+
+				// create a PackageList with the query for ALL the packages
+				new PackageList( query, d )
+
+			}
+		});
 	});
 });

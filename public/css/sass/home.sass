@@ -1,0 +1,42 @@
+@import "basis"
+@import "no-wireframe"
+
+.page-container
+	font-family: "Helvetica Neue", sans-serif
+	color: $page-color
+
+.big-title
+	padding-top: 1em
+	font-weight: lighter
+	text-align: center
+	text-shadow: 0px 0px 3px rgba(#000,0.5)
+	font-size: 60pt
+
+.about
+	color: darken($page-color,15%)
+	font-size: 18pt
+	padding: 2em
+	font-weight: lighter
+	text-align: center
+
+.install
+	display: block
+	text-decoration: none
+	position: relative
+	margin: 0.5em auto
+	text-align: center
+	box-shadow: 0px 1px 1px rgba(#000,0.25), 0px 1px 1px 0px rgba(#fff,0.25) inset
+	border-radius: 3px
+	width: 10em
+	font-size: 12pt
+	border: none
+	padding: 1.5em
+	color: $page-color
+	outline: none
+
+	@for $i from 0 through 3
+		&:nth-of-type(#{$i})
+			background: adjust-hue($sidebar-color, $i * 25% )
+
+			&:active
+				background: desaturate( darken(adjust-hue($sidebar-color, $i * 25% ),20%), 25%)

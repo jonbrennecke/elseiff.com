@@ -1,51 +1,16 @@
-extends layout
-
+extends layout-components
+	
 block head
-	link( rel="stylesheet" type="text/css" href="../css/stylesheets/index.css" )
-	title iff - the matlab/octave package manager
+	link( rel="stylesheet" type="text/css" href="../css/stylesheets/home.css" )
+	title iff - sign up
 
-block page
-	div.text-wrap
-		div.doc-section#start
-			h1.headline.fa.fa-download 
-				span.text Getting started
-			p
-				| With node and npm installed, getting up and running with iff is easy. Simply open your shell and type:
+block page-container
+	h1.big-title <em id="title-iff">I F F</em>
 
-				p.cmdlet
-					| $ npm install iff && npm link
-		
-		div.doc-section#usage
-			h1.headline.fa.fa-cutlery
-				span.text Usage
-			p
-				| Iff's command-line interface is designed to be very similar to npm.
+	p.about 
+		| Superior package management for the Matlab/Octave community.
 
-			p.cmdlet
-				| Usage: iff [options]
-				| 
-				| Options:
-				| 
-				|    install &lt;package&gt;   Query the API for a given package; and if it's found,
-				|                        download it, unpack it and add it to the matlab path.
-				| 
-				|    init [folder]       Interactively create a package structure in a folder (or
-				|                        the current directory, if no folder is provided).
-				| 
-				|    publish [folder]    If 'folder' is a module, publish the module by
-				|                        registering it with the API.
-				| 
-				|    config &lt;key=value&gt;  Set a key value pair in the config file.
-				|    help                Display this prompt.
-				| 
-		div.doc-section#api
-			h1.headline.fa.fa-cloud
-				span.text API
-		div.doc-section#fork
-			h1.headline.fa.fa-code-fork
-				span.text Fork
-			p
-				| Iff is completely open source.  Both the website and code are released under an MIT License.
-				| If you feel like lending a hand to an awesome, open source project, you can fork Iff on github.
-
+	a.install( href="https://github.com/jonbrennecke/iff/archive/master.zip") install
+	a.install( href="/packages") view packages
+	a.install( href="/docs") reference
 

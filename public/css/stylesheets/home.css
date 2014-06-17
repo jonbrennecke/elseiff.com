@@ -2595,80 +2595,75 @@ body {
   display: block !important;
 }
 
-/* line 4, ../sass/auth.sass */
-.auth-form {
-  top: 10%;
-  position: relative;
-  width: 20em;
-  margin: 0 auto;
-  padding: 2em;
-  font-family: Ubuntu, sans-serif;
-  font-size: 12pt;
-}
-/* line 13, ../sass/auth.sass */
-.auth-form .welcome {
-  font-size: 18pt;
+/* line 4, ../sass/home.sass */
+.page-container {
+  font-family: "Helvetica Neue", sans-serif;
   color: white;
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
-  margin-bottom: 1em;
 }
-/* line 19, ../sass/auth.sass */
-.auth-form .field, .auth-form input[type="submit"] {
-  margin-bottom: 1em;
-  width: 100%;
+
+/* line 8, ../sass/home.sass */
+.big-title {
+  padding-top: 1em;
+  font-weight: lighter;
+  text-align: center;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+  font-size: 60pt;
+}
+
+/* line 15, ../sass/home.sass */
+.about {
+  color: #ded7d4;
+  font-size: 18pt;
+  padding: 2em;
+  font-weight: lighter;
+  text-align: center;
+}
+
+/* line 22, ../sass/home.sass */
+.install {
+  display: block;
+  text-decoration: none;
+  position: relative;
+  margin: 0.5em auto;
+  text-align: center;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25), 0px 1px 1px 0px rgba(255, 255, 255, 0.25) inset;
   border-radius: 3px;
-}
-/* line 26, ../sass/auth.sass */
-.auth-form .field[type="submit"], .auth-form input[type="submit"][type="submit"] {
+  width: 10em;
   font-size: 12pt;
   border: none;
-  padding: 1em;
-  margin-top: 1em;
-  background: #7ec4d6;
+  padding: 1.5em;
   color: white;
   outline: none;
 }
-/* line 35, ../sass/auth.sass */
-.auth-form .field[type="submit"]:active, .auth-form input[type="submit"][type="submit"]:active {
-  background: #4b91a3;
+/* line 38, ../sass/home.sass */
+.install:nth-of-type(0) {
+  background: #7ec4d6;
 }
-/* line 38, ../sass/auth.sass */
-.auth-form .field span.icon, .auth-form input[type="submit"] span.icon {
-  position: relative;
-  float: left;
-  display: block;
-  height: 3em;
-  width: 3em;
-  color: #292526;
-  background: #443d3f;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  text-align: center;
-  padding: 1em;
-  box-sizing: border-box;
+/* line 41, ../sass/home.sass */
+.install:nth-of-type(0):active {
+  background: #578a97;
 }
-/* line 52, ../sass/auth.sass */
-.auth-form .field input, .auth-form input[type="submit"] input {
-  position: relative;
-  margin: 0;
-  box-sizing: border-box;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  width: calc(100% - 3em);
-  height: 3em;
-  font-size: 12pt;
-  padding: 0.75em;
-  background: white;
-  border: none;
-  outline: none;
+/* line 38, ../sass/home.sass */
+.install:nth-of-type(1) {
+  background: #7e9fd6;
 }
-/* line 66, ../sass/auth.sass */
-.auth-form .prompt {
-  font-size: 10pt;
-  color: #aba1a4;
+/* line 41, ../sass/home.sass */
+.install:nth-of-type(1):active {
+  background: #576f97;
 }
-/* line 70, ../sass/auth.sass */
-.auth-form .prompt a {
-  color: inherit;
+/* line 38, ../sass/home.sass */
+.install:nth-of-type(2) {
+  background: #817ed6;
+}
+/* line 41, ../sass/home.sass */
+.install:nth-of-type(2):active {
+  background: #5a5797;
+}
+/* line 38, ../sass/home.sass */
+.install:nth-of-type(3) {
+  background: #a67ed6;
+}
+/* line 41, ../sass/home.sass */
+.install:nth-of-type(3):active {
+  background: #745797;
 }

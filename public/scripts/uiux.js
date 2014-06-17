@@ -8,6 +8,26 @@
 	define( mod )
 })( function () {
 
+	// function to link to the heart on package items
+	window.heart = function () {
+		var pkg = $(this).attr('data-package');
+
+		$(this).toggleClass('fav', 80 )
+
+		$.ajax({
+			
+			method : "POST",
+			url : "http://" + host + "/api/user/favorites",
+			data : { pkg : pkg },
+			success : function ( data ) {
+				console.log( data )
+			},
+			failure : function ( err ) {
+				console.log( err )
+			}
+		});
+	};
+
 	$(".title").fadeIn(200)
 
 	// hide any empty values in the table and fade in 
