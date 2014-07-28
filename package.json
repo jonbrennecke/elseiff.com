@@ -12,7 +12,8 @@
 		"cookie-parser" : "*",
 		"connect-mongo" : "*",
 		"express-session" : "*",
-		"bcrypt" : "*"
+		"bcrypt" : "*",
+		"newrelic" : "*"
 	},
 	"description" : "API server for mbot, the matlab/octave package manager",
 	"repository" : {
