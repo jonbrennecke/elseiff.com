@@ -14,7 +14,6 @@
 			});
 	}
 	else {
-		console.log('here')
 		$(".wireframe")
 			.addClass("filled", 500, "easeOutBack" )
 			.promise()

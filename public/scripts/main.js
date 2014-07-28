@@ -14,9 +14,6 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 
-// by default the website is hosten on port 8081
-var host = "localhost:8081";
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // set up the require.js configuration
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -73,7 +70,9 @@ require([ "jquery-ui" ], function ( $ ) {
 
 			require([ 'uiux', 'packagelist' ], function ( promises, PackageList ) {
 
-				var url = document.URL.split( host ).slice( 1 )[0];
+				console.log(location)
+
+				var url = document.URL.split( location.host ).slice( 1 )[0];
 
 				// TODO this seems kinda hacky, fix this in the future
 				if ( /packages/.test(url) ) {
@@ -85,7 +84,7 @@ require([ "jquery-ui" ], function ( $ ) {
 								
 								var favQuery = $.ajax({
 									method : "get",
-									url : "http://" + host + "/api/user/favorites"
+									url : "/api/user/favorites"
 								});
 
 								$(".page").fadeOut().promise().done( function () {
@@ -119,7 +118,7 @@ require([ "jquery-ui" ], function ( $ ) {
 					 */
 					var query = $.ajax({
 						method : "GET",
-						url : "http://" + host + "/api/find"
+						url : "/api/find"
 					});
 
 					// create a PackageList with the query for ALL the packages
