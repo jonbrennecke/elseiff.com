@@ -2595,6 +2595,11 @@ body {
   display: block !important;
 }
 
+/* line 16, ../sass/_no-wireframe.sass */
+.loading-spinner {
+  display: none;
+}
+
 /* line 4, ../sass/auth.sass */
 .auth-form {
   top: 10%;
