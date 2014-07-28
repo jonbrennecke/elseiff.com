@@ -9,23 +9,27 @@
  * 
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 
- * the command line syntax to instantiate the server is:
+ * the command line syntax to instantiate the server is as simple as:
  *
- * > npm --user=$USERNAME --pass=$PASSWORD --secret=$SECRET --port=3000 start
- *
- * where:
- *	$USERNAME - the MongoDB username
- *  $PASSWORD - the MongoDB password
- *	$SECRET - cookie secret key
+ * > npm start
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// load the confuration file
+// ---
+// The config.js file exports a JSON object containing some parameters and
+// sensitive information such as passwords and secret keys. It is NOT part of the public github repository
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+var config = require( __dirname + '/config' ),
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // require all the important node module
 // Expressjs, MongoDB, Passport
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-var express = require('express'),
+	express = require('express'),
 	app = express(),
 	router = express.Router(),
 	bodyParser = require('body-parser'),
@@ -37,7 +41,7 @@ var express = require('express'),
 
 	// require some local files
 	User = require( __dirname + '/api/models/user'),
-	db = require( __dirname + '/db.js' ),
+	db = require( __dirname + '/db.js' )( config.mongodb ),
 	Version = require( __dirname + '/version' );
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,7 +51,7 @@ app.set('views', __dirname + '/public/jade/' );
 app.set('view engine', 'jade');
 app.engine( 'jade', require('jade').__express );
 app.use( bodyParser() );
-app.use( cookieParser( process.env.npm_config_secret ) );
+app.use( cookieParser( config.passport.secret ) ); // use the secret key from the config file
 app.use( session({
 	secret : process.env.npm_config_secret,
 	cookie : {
@@ -115,7 +119,8 @@ pages.use( app, passport );
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // finally, start the sever on the given port
+// ---
+// use the port from the configuration file, or default to 3000
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-app.listen( process.env.npm_config_port || 8081 );
-
+app.listen( config.port || 3000 );
 
