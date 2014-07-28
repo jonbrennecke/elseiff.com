@@ -1,0 +1,40 @@
+extends layout-components
+	
+block head
+	link( rel="stylesheet" type="text/css" href="../css/stylesheets/home.css" )
+	title iff - sign up
+
+block page-container
+	div.page-wrap
+		div.page.wireframe
+			div.contents
+
+				.about
+					span.bigger-text
+						| iff is a package manager for Matlab and Octave. 
+						| &nbsp;Check out the 
+						a(href="/packages") package list
+						|.
+				
+				.install
+					h2.fa.fa-download &nbsp;
+						span.hdr install iff
+					span.text iff is a command line utility, install it with npm.
+					span.cmdlet npm install iff
+					span.text
+						| iff requires 
+						a(href="http://nodejs.org/" target="_blank") Node, npm
+						| &nbsp;and&nbsp;
+						a(href="http://git-scm.com/" target="_blank") Git
+						|.
+
+				.oss
+					h2.fa.fa-github &nbsp;
+						span.hdr free as in speech
+					span.text
+						| Both this website and iff are open source (MIT License).
+						| &nbsp;If you're a developer, check out the source code for&nbsp;
+						a(href="https://github.com/jonbrennecke/iff" target="_blank") iff
+						| &nbsp;and&nbsp;
+						a(href="https://github.com/jonbrennecke/elseiff.com" target="_blank") elseiff.com
+						| &nbsp;on Github.

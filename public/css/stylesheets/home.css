@@ -2575,95 +2575,73 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f1e2";
 }
 
-/* line 1, ../sass/_no-wireframe.sass */
-body {
-  background: #6c6164;
-}
-
-/* line 4, ../sass/_no-wireframe.sass */
-.header {
-  background: #51494b !important;
-  width: 100% !important;
-}
-/* line 8, ../sass/_no-wireframe.sass */
-.header .header-item {
-  left: 0 !important;
-  display: block !important;
-}
-/* line 12, ../sass/_no-wireframe.sass */
-.header .title {
-  display: block !important;
-}
-
 /* line 4, ../sass/home.sass */
-.page-container {
-  font-family: "Helvetica Neue", sans-serif;
-  color: white;
+.page .contents {
+  display: none;
 }
 
-/* line 8, ../sass/home.sass */
-.big-title {
-  padding-top: 1em;
-  font-weight: lighter;
-  text-align: center;
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
-  font-size: 60pt;
+/* line 7, ../sass/home.sass */
+.page-wrap {
+  width: 100% !important;
+  left: 0 !important;
 }
 
-/* line 15, ../sass/home.sass */
-.about {
-  color: #ded7d4;
-  font-size: 18pt;
-  padding: 2em;
-  font-weight: lighter;
-  text-align: center;
-}
-
-/* line 22, ../sass/home.sass */
-.install {
+/* line 13, ../sass/home.sass */
+.page.filled .contents {
   display: block;
-  text-decoration: none;
+  padding: 2em;
+  font-family: "Ubuntu", sans-serif;
+  color: #6c6164;
+}
+/* line 19, ../sass/home.sass */
+.page.filled .contents .header, .page.filled .contents h1, .page.filled .contents h2 {
+  font-weight: lighter;
+  color: #7ec4d6;
+}
+/* line 23, ../sass/home.sass */
+.page.filled .contents .header .hdr, .page.filled .contents h1 .hdr, .page.filled .contents h2 .hdr {
+  font-family: "Ubuntu", sans-serif;
+}
+/* line 26, ../sass/home.sass */
+.page.filled .contents h1 {
+  font-size: 42pt;
+}
+/* line 30, ../sass/home.sass */
+.page.filled .contents h2 {
+  font-size: 22pt;
+  padding: 0.5em 0;
+}
+/* line 35, ../sass/home.sass */
+.page.filled .contents .about {
+  padding: 1em;
+}
+/* line 38, ../sass/home.sass */
+.page.filled .contents .text, .page.filled .contents .bigger-text {
   position: relative;
-  margin: 0.5em auto;
-  text-align: center;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25), 0px 1px 1px 0px rgba(255, 255, 255, 0.25) inset;
-  border-radius: 3px;
-  width: 10em;
-  font-size: 12pt;
-  border: none;
-  padding: 1.5em;
-  color: white;
-  outline: none;
+  display: block;
+  padding: 1em 0;
 }
-/* line 38, ../sass/home.sass */
-.install:nth-of-type(0) {
-  background: #7ec4d6;
+/* line 43, ../sass/home.sass */
+.page.filled .contents .text a, .page.filled .contents .bigger-text a {
+  color: #44a9c4;
+  text-decoration: none;
 }
-/* line 41, ../sass/home.sass */
-.install:nth-of-type(0):active {
-  background: #578a97;
+/* line 47, ../sass/home.sass */
+.page.filled .contents .bigger-text {
+  font-size: 1.5em;
+  line-height: 1.5em;
 }
-/* line 38, ../sass/home.sass */
-.install:nth-of-type(1) {
-  background: #7e9fd6;
+/* line 52, ../sass/home.sass */
+.page.filled .contents .cmdlet {
+  display: block;
+  background: #d54639;
+  color: #fffad5;
+  padding: 1em 2em;
+  width: 20em;
+  border-radius: 10px;
 }
-/* line 41, ../sass/home.sass */
-.install:nth-of-type(1):active {
-  background: #576f97;
-}
-/* line 38, ../sass/home.sass */
-.install:nth-of-type(2) {
-  background: #817ed6;
-}
-/* line 41, ../sass/home.sass */
-.install:nth-of-type(2):active {
-  background: #5a5797;
-}
-/* line 38, ../sass/home.sass */
-.install:nth-of-type(3) {
-  background: #a67ed6;
-}
-/* line 41, ../sass/home.sass */
-.install:nth-of-type(3):active {
-  background: #745797;
+/* line 60, ../sass/home.sass */
+.page.filled .contents .cmdlet:before {
+  content: "$ ";
+  color: #fffad5;
 }

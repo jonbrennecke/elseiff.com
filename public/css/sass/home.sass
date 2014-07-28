@@ -1,42 +1,62 @@
 @import "basis"
-@import "no-wireframe"
 
-.page-container
-	font-family: "Helvetica Neue", sans-serif
-	color: $page-color
+.page
+	.contents
+		display: none
 
-.big-title
-	padding-top: 1em
-	font-weight: lighter
-	text-align: center
-	text-shadow: 0px 0px 3px rgba(#000,0.5)
-	font-size: 60pt
+.page-wrap
+	width: 100% !important
+	left: 0 !important
 
-.about
-	color: darken($page-color,15%)
-	font-size: 18pt
-	padding: 2em
-	font-weight: lighter
-	text-align: center
+.page.filled
 
-.install
-	display: block
-	text-decoration: none
-	position: relative
-	margin: 0.5em auto
-	text-align: center
-	box-shadow: 0px 1px 1px rgba(#000,0.25), 0px 1px 1px 0px rgba(#fff,0.25) inset
-	border-radius: 3px
-	width: 10em
-	font-size: 12pt
-	border: none
-	padding: 1.5em
-	color: $page-color
-	outline: none
+	.contents
+		display: block
+		padding: 2em
+		font-family: "Ubuntu", sans-serif
+		color: $header-color
 
-	@for $i from 0 through 3
-		&:nth-of-type(#{$i})
-			background: adjust-hue($sidebar-color, $i * 25% )
+		.header
+			font-weight: lighter
+			color: $sidebar-color
 
-			&:active
-				background: desaturate( darken(adjust-hue($sidebar-color, $i * 25% ),20%), 25%)
+			.hdr
+				font-family: "Ubuntu", sans-serif
+
+		h1
+			@extend .header
+			font-size: 42pt
+
+		h2
+			@extend .header
+			font-size: 22pt
+			padding: 0.5em 0
+
+		.about
+			padding: 1em
+
+		.text
+			position: relative
+			display: block
+			padding: 1em 0
+
+			a
+				color: darken($sidebar-color,15%)
+				text-decoration: none
+
+		.bigger-text
+			@extend .text
+			font-size: 1.5em
+			line-height: 1.5em
+
+		.cmdlet
+			display: block
+			background: $peach
+			color: $pale
+			padding: 1em 2em
+			width: 20em
+			border-radius: 10px
+
+			&:before
+				content: '$ '
+				color: $pale

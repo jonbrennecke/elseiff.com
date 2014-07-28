@@ -27,8 +27,9 @@ var config = require( __dirname + '/config' ),
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // require all the important node module
-// Expressjs, MongoDB, Passport
+// New Relic, Expressjs, MongoDB, Passport
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	newrelic = require('newrelic'),
 	express = require('express'),
 	app = express(),
 	router = express.Router(),
@@ -47,7 +48,7 @@ var config = require( __dirname + '/config' ),
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // configure express
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-app.set('views', __dirname + '/public/jade/' );
+app.set('views', __dirname + '/public/templates/' );
 app.set('view engine', 'jade');
 app.engine( 'jade', require('jade').__express );
 app.use( bodyParser() );
