@@ -1,4 +1,4 @@
-var host = "elseiff.com";
+var host = "localhost:3000";
 
 
 requirejs.config({

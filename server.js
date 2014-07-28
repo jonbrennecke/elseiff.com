@@ -1,17 +1,30 @@
 /**
  *
- * mbot
+ * ███████╗██╗     ███████╗███████╗██╗███████╗███████╗     ██████╗ ██████╗ ███╗   ███╗
+ * ██╔════╝██║     ██╔════╝██╔════╝██║██╔════╝██╔════╝    ██╔════╝██╔═══██╗████╗ ████║
+ * █████╗  ██║     ███████╗█████╗  ██║█████╗  █████╗      ██║     ██║   ██║██╔████╔██║
+ * ██╔══╝  ██║     ╚════██║██╔══╝  ██║██╔══╝  ██╔══╝      ██║     ██║   ██║██║╚██╔╝██║
+ * ███████╗███████╗███████║███████╗██║██║     ██║    ██╗  ╚██████╗╚██████╔╝██║ ╚═╝ ██║
+ * ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝╚═╝     ╚═╝    ╚═╝   ╚═════╝ ╚═════╝ ╚═╝     ╚═╝
+ * 
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * 
+ * the command line syntax to instantiate the server is:
  *
+ * > npm --user=$USERNAME --pass=$PASSWORD --secret=$SECRET --port=3000 start
  *
- * RESTful API
+ * where:
+ *	$USERNAME - the MongoDB username
+ *  $PASSWORD - the MongoDB password
+ *	$SECRET - cookie secret key
  *
- * endpoints:
- *
- *
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 
-
-
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// require all the important node module
+// Expressjs, MongoDB, Passport
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var express = require('express'),
 	app = express(),
 	router = express.Router(),
@@ -22,13 +35,14 @@ var express = require('express'),
 	LocalStrategy = require('passport-local').Strategy,
 	MongoStore = require('connect-mongo')( session ),
 
+	// require some local files
 	User = require( __dirname + '/api/models/user'),
 	db = require( __dirname + '/db.js' ),
 	Version = require( __dirname + '/version' );
 
-
-
-// express config
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// configure express
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 app.set('views', __dirname + '/public/jade/' );
 app.set('view engine', 'jade');
 app.engine( 'jade', require('jade').__express );
@@ -46,16 +60,12 @@ app.use( session({
 app.use( passport.initialize() );
 app.use( passport.session() );
 app.use( '/api', router );
+app.use( express.static( __dirname + '/public/') ); // TODO replace serving static files with NginX
 
-// TODO replace serving static files with NginX
-app.use( express.static( __dirname + '/public/') );
 
-/**
- *
- * passport requires these functions to serialize user info for a persistant session
- *
- */
-
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// set up Passport to serialize user sessions information for persistant sessions
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 passport.serializeUser( function ( user, done ) {
 	done(null, user.email );
 });
@@ -67,7 +77,9 @@ passport.deserializeUser( function ( email, done ) {
 });
 
 
-// set up passport for local authentication
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// set up Passport for our local authentication strategy
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 passport.use( new LocalStrategy(
 	function ( username, password, done ) {
 
@@ -89,16 +101,21 @@ passport.use( new LocalStrategy(
 ));
 
 
-// pass to api manager
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// set up the API router
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var api = require( __dirname + '/api/api' );
 api.use( app, router );
 
-// pass to pages manager
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// set up the Page router
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var pages = require( __dirname + '/pages/pages' );
 pages.use( app, passport );
 
-
-
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// finally, start the sever on the given port
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 app.listen( process.env.npm_config_port || 8081 );
 
 
