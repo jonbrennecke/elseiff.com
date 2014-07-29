@@ -8,6 +8,8 @@ mixin preload
 
 block head
 	title iff - the matlab/octave package manager
+	script
+		| document.getElementById("requirejs").dataset.second = "packagelist";
 
 block page
 	div.page-item

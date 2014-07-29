@@ -2853,8 +2853,9 @@ body {
 /* line 13, ../sass/main.sass */
 .header-wrap .header {
   background: #6c6164;
+  box-shadow: 0px -1px 0px #5f5558 inset;
 }
-/* line 16, ../sass/main.sass */
+/* line 17, ../sass/main.sass */
 .header-wrap .header .title {
   display: none;
   position: absolute;
@@ -2867,24 +2868,24 @@ body {
   top: 12.5px;
   left: 12.5px;
 }
-/* line 28, ../sass/main.sass */
+/* line 29, ../sass/main.sass */
 .header-wrap .header .title span {
   color: #fffad5;
   font-size: 0.5em;
   vertical-align: top;
   padding-left: 0.5em;
 }
-/* line 34, ../sass/main.sass */
+/* line 35, ../sass/main.sass */
 .header-wrap .header.wireframe {
   height: 100%;
   width: 0%;
   box-sizing: border-box;
 }
-/* line 39, ../sass/main.sass */
+/* line 40, ../sass/main.sass */
 .header-wrap .header.wireframe.filled {
   width: 100%;
 }
-/* line 42, ../sass/main.sass */
+/* line 43, ../sass/main.sass */
 .header-wrap .header .header-item {
   position: relative;
   display: none;
@@ -2896,7 +2897,7 @@ body {
   text-decoration: none;
   margin: 0.5em 0.5em 0 0.5em;
 }
-/* line 53, ../sass/main.sass */
+/* line 54, ../sass/main.sass */
 .header-wrap .header .header-item:not(.search-wrap) {
   height: 1em;
   width: 5em;
@@ -2904,11 +2905,11 @@ body {
   border-radius: 2px;
   background: #443d3f;
 }
-/* line 60, ../sass/main.sass */
+/* line 61, ../sass/main.sass */
 .header-wrap .header .header-item.filled {
   left: 0;
 }
-/* line 64, ../sass/main.sass */
+/* line 65, ../sass/main.sass */
 .header-wrap .header .header-item.search-wrap .search {
   height: 30px;
   top: 10px;
@@ -2917,7 +2918,7 @@ body {
   box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5) inset, 0px 1px 1px rgba(0, 0, 0, 0.25);
   border-radius: 2px;
 }
-/* line 74, ../sass/main.sass */
+/* line 75, ../sass/main.sass */
 .header-wrap .header .header-item.search-wrap .search input[type="text"] {
   border-top-left-radius: inherit;
   border-bottom-left-radius: inherit;
@@ -2932,7 +2933,7 @@ body {
   padding-left: 1em;
   font-size: 12pt;
 }
-/* line 89, ../sass/main.sass */
+/* line 90, ../sass/main.sass */
 .header-wrap .header .header-item.search-wrap .search .fa {
   width: 30px;
   height: 100%;

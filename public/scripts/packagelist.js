@@ -3,17 +3,20 @@
 })( function () {
 
 	/**
-	 *
-	 * the function is passed a promise that resolves with a list of packages from the server
-	 *
-	 * A second deffered object, 'anim', may also be passed so that listing the packages waits til
-	 * after an animation has completed
-	 *
+	 * AJAX post request to retieve all packages
+	 * ---
+	 * the AJAX query for packages and the loading animations happen simultaneously,
+	 * so that once the animations have finished, the query has already completed
 	 */
-	return function ( query, anim ) {
+	var query = $.ajax({
+		method : "GET",
+		url : "/api/find"
+	});
 
-		$.when( query, anim ).done( function ( success ) {
+	return function ( uiPromises ) {
 
+		$.when( query, uiPromises.page ).then( function ( success ) {
+			
 			for ( var i = 0; i < success.length; i++ ) {
 
 				if ( typeof success[i] == "object" && success[i].status == "200" && success[i].message ) {
@@ -66,7 +69,8 @@
 						}
 					}
 				}
-			};
+			}
+
 		});
 	}
 });	

@@ -1,7 +1,7 @@
 @import "basis"
 
 .page
-	.contents
+	.contents-wrap
 		display: none
 
 .page-wrap
@@ -9,54 +9,145 @@
 	left: 0 !important
 
 .page.filled
-
-	.contents
+	.contents-wrap
 		display: block
-		padding: 2em
-		font-family: "Ubuntu", sans-serif
-		color: $header-color
 
-		.header
-			font-weight: lighter
+.jumbotron
+	background: $sidebar-color
+	font-family: "Ubuntu", sans-serif
+	font-weight: lighter
+	padding: 2em 0
+	color: rgba($page-color,0.8)
+	box-shadow: 0px 1px 0px lighten($sidebar-color,10%) inset, 0px -1px 0px darken($sidebar-color,10%) inset 
+
+	.centered-text
+		position: relative
+		display: block
+		text-align: center
+
+	.jumbo
+		@extend .centered-text
+		font-size: 72pt
+		padding-top: 0.5em
+		color: $page-color
+		text-shadow: 5px 3px 1px darken($sidebar-color,25%)
+
+	.catch-phrase
+		@extend .centered-text
+		font-size: 18pt
+		padding: 1.5em
+
+	.call-to-action
+		position: relative
+		display: block
+		font-size: 24pt
+		border-radius: 0.25em
+		border: 1px solid #fff
+		color: #fff
+		padding: 0.75em
+		width: 8em
+		margin: 0.5em auto
+		text-align: center
+		text-decoration: none
+		&:hover
+			background: #fff
 			color: $sidebar-color
+		&:before
+			padding-right: 0.5em
 
-			.hdr
-				font-family: "Ubuntu", sans-serif
+		span
+			font-family: "Ubuntu", sans-serif
+			color: inherit
+			cursor: pointer
 
-		h1
-			@extend .header
-			font-size: 42pt
+	.promo
+		position: relative
+		width: 100%
+		text-align: center
+		padding-top: 1.5em
+		a
+			text-decoration: none
+			color: inherit
+			border-bottom: 1px dotted $page-color
+			&:hover
+				color: #fff
+				border-bottom: 1px solid #fff
 
-		h2
-			@extend .header
-			font-size: 22pt
-			padding: 0.5em 0
+.social-media-share
+	background: $bg-color
+	padding: 3em
+	box-shadow: 0px 1px 0px lighten($bg-color,10%) inset, 0px -1px 0px darken($bg-color,5%) inset
 
-		.about
-			padding: 1em
+	.social-media-share-wrap
+		position: relative
+		margin-top: -0.5em
+		float: right
+		left: -50%
+		text-align: left
 
-		.text
+		.share-icons-list
 			position: relative
-			display: block
-			padding: 1em 0
+			left: 50%
 
-			a
-				color: darken($sidebar-color,15%)
-				text-decoration: none
+			iframe, div
+				float: left
+				position: relative
 
-		.bigger-text
-			@extend .text
-			font-size: 1.5em
-			line-height: 1.5em
+.text-block
+	padding: 0 3em
+	line-height: 1.5em
 
-		.cmdlet
-			display: block
-			background: $peach
+.contents
+	padding: 2em 7em
+	font-family: "Ubuntu", sans-serif
+	color: $header-color
+	background: $page-color
+
+	h1, h2
+		font-weight: lighter
+		color: $sidebar-color
+
+		.hdr
+			font-family: "Ubuntu", sans-serif
+			padding-left: 0.5em
+
+	h1
+		font-size: 42pt
+
+	h2
+		font-size: 22pt
+		padding: 0.5em 0
+
+	.about
+		padding: 1em
+
+	.text
+		position: relative
+		display: block
+		padding: 1em 0
+
+		a
+			color: darken($sidebar-color,15%)
+			text-decoration: none
+
+	.bigger-text
+		@extend .text
+		font-size: 1.5em
+		line-height: 1.5em
+
+	.smaller-text
+		@extend .text
+		line-height: 1.5em
+
+	.cmdlet
+		display: block
+		background: $peach
+		color: $pale
+		padding: 1em 2em
+		width: 20em
+		border-radius: 10px
+
+		&:before
+			content: '$'
+			padding-right: 1em
 			color: $pale
-			padding: 1em 2em
-			width: 20em
-			border-radius: 10px
-
-			&:before
-				content: '$ '
-				color: $pale

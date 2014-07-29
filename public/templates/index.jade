@@ -5,36 +5,86 @@ block head
 	title iff - sign up
 
 block page-container
-	div.page-wrap
-		div.page.wireframe
-			div.contents
+	.page-wrap
+		.page.wireframe
+			.contents-wrap
+				.jumbotron
+					.jumbo iff
+					.catch-phrase a package manager for the Matlab & Octave community.
+					a.call-to-action.fa.fa-file-text(href="/packages") 
+						span Packages
+					a.call-to-action.fa.fa-download(href="#install") 
+						span Download
+					.promo
+						span 
+							| Version 0.0.1 &nbsp;&nbsp;·&nbsp;&nbsp;
+							a( href="https://github.com/jonbrennecke/iff" target="_blank") Github Project
+							| &nbsp;&nbsp;·&nbsp;&nbsp; Created by 
+							a( href="https://github.com/jonbrennecke") Jon Brennecke
 
-				.about
-					span.bigger-text
-						| iff is a package manager for Matlab and Octave. 
-						| &nbsp;Check out the 
-						a(href="/packages") package list
-						|.
-				
-				.install
-					h2.fa.fa-download &nbsp;
-						span.hdr install iff
-					span.text iff is a command line utility, install it with npm.
-					span.cmdlet npm install iff
-					span.text
-						| iff requires 
-						a(href="http://nodejs.org/" target="_blank") Node, npm
-						| &nbsp;and&nbsp;
-						a(href="http://git-scm.com/" target="_blank") Git
-						|.
+				.social-media-share
+					.social-media-share-wrap
+						.share-icons-list
 
-				.oss
-					h2.fa.fa-github &nbsp;
-						span.hdr free as in speech
-					span.text
-						| Both this website and iff are open source (MIT License).
-						| &nbsp;If you're a developer, check out the source code for&nbsp;
-						a(href="https://github.com/jonbrennecke/iff" target="_blank") iff
-						| &nbsp;and&nbsp;
-						a(href="https://github.com/jonbrennecke/elseiff.com" target="_blank") elseiff.com
-						| &nbsp;on Github.
+							//- github buttons - https://github.com/mdo/github-buttons
+							iframe(src="http://ghbtns.com/github-btn.html?user=jonbrennecke&repo=iff&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20")
+							iframe(src="http://ghbtns.com/github-btn.html?user=jonbrennecke&repo=iff&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20")
+						
+							//- tweet button - https://dev.twitter.com/docs/tweet-button
+							a(href="https://twitter.com/share" class="twitter-share-button" data-lang="en") Tweet
+							script
+								| !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+							
+							//- google +1 - https://developers.google.com/+/web/+1button/
+							.g-plusone(data-size="medium")
+								script(type="text/javascript")
+									| (function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/platform.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();
+				.contents
+					.about
+						.bigger-text
+							| You write code made of frameworks, toolboxes and libraries from all over. 
+							| Sometimes all that code can be difficult to keep track of, so iff takes care of the black magic 
+							| for you. &nbsp;Iff seemlessly tracks your program's metadata in a manifest file 'iff.json',
+							| so you can install, update or even publish your data from the command line.
+
+						.smaller-text
+							| Iff also makes it easy to find packages to suit your needs.
+							| &nbsp;When you publish packages with iff, they'll show up on the official&nbsp;
+							a(href="/packages") package listing
+							|, making it easy to collaborate, share or just show off.
+					
+					.install.block
+						h2.fa.fa-download
+							span.hdr#install install iff
+						.text-block
+							.text-block-wrap
+								.text iff is a command line utility, install it with npm.  This will add the iff program to your shell, so you can access it anywhere.
+								.cmdlet npm install -g iff
+								.text
+									| iff requires 
+									a(href="http://nodejs.org/" target="_blank") Node, npm
+									| &nbsp;and&nbsp;
+									a(href="http://git-scm.com/" target="_blank") Git
+									|.
+
+					.oss.block
+						h2.fa.fa-beer
+							span.hdr free as in beer
+
+						.text-block
+							.text-block-wrap
+								.text
+									| Anyone can use iff at no cost.
+
+					.oss.block
+						h2.fa.fa-github
+							span.hdr free as in speech
+						.text-block
+							.text-block-wrap
+								.text
+									| Both this website and iff are open source (MIT License). And because they're built on Node.js, they're open source all the way down.
+									| &nbsp;If you're a developer, check out the source code for&nbsp;
+									a(href="https://github.com/jonbrennecke/iff" target="_blank") iff
+									| &nbsp;and&nbsp;
+									a(href="https://github.com/jonbrennecke/elseiff.com" target="_blank") elseiff.com
+									| &nbsp;on Github.

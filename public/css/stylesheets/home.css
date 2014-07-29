@@ -2576,7 +2576,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* line 4, ../sass/home.sass */
-.page .contents {
+.page .contents-wrap {
   display: none;
 }
 
@@ -2586,53 +2586,169 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   left: 0 !important;
 }
 
-/* line 13, ../sass/home.sass */
-.page.filled .contents {
+/* line 12, ../sass/home.sass */
+.page.filled .contents-wrap {
   display: block;
-  padding: 2em;
+}
+
+/* line 15, ../sass/home.sass */
+.jumbotron {
+  background: #7ec4d6;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: lighter;
+  padding: 2em 0;
+  color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 1px 0px #a5d6e2 inset, 0px -1px 0px #57b2ca inset;
+}
+/* line 23, ../sass/home.sass */
+.jumbotron .centered-text, .jumbotron .jumbo, .jumbotron .catch-phrase {
+  position: relative;
+  display: block;
+  text-align: center;
+}
+/* line 28, ../sass/home.sass */
+.jumbotron .jumbo {
+  font-size: 72pt;
+  padding-top: 0.5em;
+  color: white;
+  text-shadow: 5px 3px 1px #338ba1;
+}
+/* line 35, ../sass/home.sass */
+.jumbotron .catch-phrase {
+  font-size: 18pt;
+  padding: 1.5em;
+}
+/* line 40, ../sass/home.sass */
+.jumbotron .call-to-action {
+  position: relative;
+  display: block;
+  font-size: 24pt;
+  border-radius: 0.25em;
+  border: 1px solid white;
+  color: white;
+  padding: 0.75em;
+  width: 8em;
+  margin: 0.5em auto;
+  text-align: center;
+  text-decoration: none;
+}
+/* line 52, ../sass/home.sass */
+.jumbotron .call-to-action:hover {
+  background: white;
+  color: #7ec4d6;
+}
+/* line 55, ../sass/home.sass */
+.jumbotron .call-to-action:before {
+  padding-right: 0.5em;
+}
+/* line 58, ../sass/home.sass */
+.jumbotron .call-to-action span {
+  font-family: "Ubuntu", sans-serif;
+  color: inherit;
+  cursor: pointer;
+}
+/* line 63, ../sass/home.sass */
+.jumbotron .promo {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding-top: 1.5em;
+}
+/* line 68, ../sass/home.sass */
+.jumbotron .promo a {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px dotted white;
+}
+/* line 72, ../sass/home.sass */
+.jumbotron .promo a:hover {
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+/* line 76, ../sass/home.sass */
+.social-media-share {
+  background: #f5f3f3;
+  padding: 3em;
+  box-shadow: 0px 1px 0px white inset, 0px -1px 0px #eae6e4 inset;
+}
+/* line 81, ../sass/home.sass */
+.social-media-share .social-media-share-wrap {
+  position: relative;
+  margin-top: -0.5em;
+  float: right;
+  left: -50%;
+  text-align: left;
+}
+/* line 88, ../sass/home.sass */
+.social-media-share .social-media-share-wrap .share-icons-list {
+  position: relative;
+  left: 50%;
+}
+/* line 92, ../sass/home.sass */
+.social-media-share .social-media-share-wrap .share-icons-list iframe, .social-media-share .social-media-share-wrap .share-icons-list div {
+  float: left;
+  position: relative;
+}
+
+/* line 96, ../sass/home.sass */
+.text-block {
+  padding: 0 3em;
+  line-height: 1.5em;
+}
+
+/* line 100, ../sass/home.sass */
+.contents {
+  padding: 2em 7em;
   font-family: "Ubuntu", sans-serif;
   color: #6c6164;
+  background: white;
 }
-/* line 19, ../sass/home.sass */
-.page.filled .contents .header, .page.filled .contents h1, .page.filled .contents h2 {
+/* line 106, ../sass/home.sass */
+.contents h1, .contents h2 {
   font-weight: lighter;
   color: #7ec4d6;
 }
-/* line 23, ../sass/home.sass */
-.page.filled .contents .header .hdr, .page.filled .contents h1 .hdr, .page.filled .contents h2 .hdr {
+/* line 110, ../sass/home.sass */
+.contents h1 .hdr, .contents h2 .hdr {
   font-family: "Ubuntu", sans-serif;
+  padding-left: 0.5em;
 }
-/* line 26, ../sass/home.sass */
-.page.filled .contents h1 {
+/* line 114, ../sass/home.sass */
+.contents h1 {
   font-size: 42pt;
 }
-/* line 30, ../sass/home.sass */
-.page.filled .contents h2 {
+/* line 117, ../sass/home.sass */
+.contents h2 {
   font-size: 22pt;
   padding: 0.5em 0;
 }
-/* line 35, ../sass/home.sass */
-.page.filled .contents .about {
+/* line 121, ../sass/home.sass */
+.contents .about {
   padding: 1em;
 }
-/* line 38, ../sass/home.sass */
-.page.filled .contents .text, .page.filled .contents .bigger-text {
+/* line 124, ../sass/home.sass */
+.contents .text, .contents .bigger-text, .contents .smaller-text {
   position: relative;
   display: block;
   padding: 1em 0;
 }
-/* line 43, ../sass/home.sass */
-.page.filled .contents .text a, .page.filled .contents .bigger-text a {
+/* line 129, ../sass/home.sass */
+.contents .text a, .contents .bigger-text a, .contents .smaller-text a {
   color: #44a9c4;
   text-decoration: none;
 }
-/* line 47, ../sass/home.sass */
-.page.filled .contents .bigger-text {
+/* line 133, ../sass/home.sass */
+.contents .bigger-text {
   font-size: 1.5em;
   line-height: 1.5em;
 }
-/* line 52, ../sass/home.sass */
-.page.filled .contents .cmdlet {
+/* line 138, ../sass/home.sass */
+.contents .smaller-text {
+  line-height: 1.5em;
+}
+/* line 142, ../sass/home.sass */
+.contents .cmdlet {
   display: block;
   background: #d54639;
   color: #fffad5;
@@ -2640,8 +2756,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 20em;
   border-radius: 10px;
 }
-/* line 60, ../sass/home.sass */
-.page.filled .contents .cmdlet:before {
-  content: "$ ";
+/* line 150, ../sass/home.sass */
+.contents .cmdlet:before {
+  content: "$";
+  padding-right: 1em;
   color: #fffad5;
 }

@@ -9,122 +9,73 @@
  * 
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 
- * front-end pages
+ * this is the main script for the front-end pages
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// set up the require.js configuration
+// Wireframes
+// ----
+// The wireframe animations make the page seem more responsive, so they are loaded first
+// while the rest of the page content is asynchronously loaded
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-requirejs.config({
-	paths : {
-		jquery : "bower_components/jquery/dist/jquery.min",
-		"jquery-ui" : "bower_components/jquery-ui/ui/minified/jquery-ui.min"
-	},
-	shim : {
-		jquery : {
-			exports : "$"
-		},
 
-		"jquery-ui" : {
-			exports : '$',
-			deps : [ 'jquery' ]
-		},
+var d = $.Deferred();
 
-		uiux : {
-			deps : [ 'jquery-ui' ]
-		},
+$(document.body).ready(function() {
 
-		wireframe : {
-			deps : [ 'jquery-ui' ]
-		}
+	// if we're coming from the same page, we've already seen it once, so don't show off as much
+	if ( document.referrer.indexOf(location.protocol + "//" + location.host) === 0 ) {
+		$(".wireframe")
+			.addClass("filled")
+			.promise()
+			.done( function () {
+				d.resolve();
+			});
+	}
+	else {
+		$(".wireframe")
+			.addClass("filled", 500, "easeOutBack" )
+			.promise()
+			.done( function () {
+				d.resolve();
+			});
 	}
 });
 
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// to do anything useful we'll need jquery ui and the wireframe deffered object
+// load the ui/ux script
+// ----
+// the return value is a function 'startAnims' that starts the UI animations 
+// and returns a JSON object containing promises which resolve once the animations have finished
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-require([ "jquery-ui" ], function ( $ ) {
+require([ 'uiux' ], function ( startAnims ) {
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// TODO check data attribute to load the next part
-	// we don't need to make this API request for every page
+	// once the wireframe animation has finished, run the UI animations to finish creating 
+	// the page
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// var article = document.querySelector('#electriccars'),
-	// article.dataset.wireframe;
-	// if ( )
+	$.when( d ).done( function () {
 
-	// // if the page uses the wireframe, load it seperately
-	// require(["wireframe"], function ( wfd ) {
+		var uiPromises = startAnims();
 
-	// });
+		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// for certain pages, the requirejs <script> tag in <head> may have a data-second attribute
+		// specifying a secondary script to be loaded
+		// 
+		// the secondary script returns a function 'doPageAction' which takes as a parameter the
+		// promises returned from the UI animations
+		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		var rjsData = document.getElementById('requirejs').dataset;
 
-	require(["wireframe"],function ( wfd ) {
-		$.when( wfd ).done( function () {
-
-			require([ 'uiux', 'packagelist' ], function ( promises, PackageList ) {
-
-				console.log(location)
-
-				var url = document.URL.split( location.host ).slice( 1 )[0];
-
-				// TODO this seems kinda hacky, fix this in the future
-				if ( /packages/.test(url) ) {
-					
-					// sidebar favorites button is clicked	
-					promises.sidebarItems.done( function () {
-						$("#sb-favorites").click( function () {
-							if ( this.dataset.action == "favorites" ) {
-								
-								var favQuery = $.ajax({
-									method : "get",
-									url : "/api/user/favorites"
-								});
-
-								$(".page").fadeOut().promise().done( function () {
-
-									$(this).empty().show()
-
-									var d = $.Deferred();
-
-									$(".page-item").promise().done( function () {
-										d.resolve();
-									});
-
-									// create a PackageList with the query for the user's favorites
-									new PackageList( favQuery, d )
-								})
-							}
-						});
-					});
-
-					var d = $.Deferred();
-
-					$(".page-item").promise().done( function () {
-						d.resolve();
-					});
-
-					/**
-					 * AJAX post request to retieve all packages
-					 * ---
-					 * the AJAX query for packages and the loading animations happen simultaneously,
-					 * so that once the animations have finished, the query is completed
-					 */
-					var query = $.ajax({
-						method : "GET",
-						url : "/api/find"
-					});
-
-					// create a PackageList with the query for ALL the packages
-					new PackageList( query, d )
-				}
+		if ( rjsData.second ) {
+			require([ rjsData.second ], function ( doPageAction ) {
+				doPageAction( uiPromises );
 			});
-		});
+		}
+
 	});
 });
+
