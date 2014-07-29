@@ -1,4 +1,4 @@
-iff-website
+elseiff.com
 ===========
 
-API server and webpage hub for Iff, the matlab/octave package manager.
+Website and API server for iff, the matlab/octave package manager.
